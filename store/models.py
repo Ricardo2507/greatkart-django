@@ -1,7 +1,6 @@
 
 from django.db import models
 from category.models import Category
-from django.db.models.fields import DecimalField, SlugField
 from django.urls import reverse
 
 class Product(models.Model):
@@ -15,6 +14,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'product'
+        verbose_name_plural = 'produtos'
     
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])

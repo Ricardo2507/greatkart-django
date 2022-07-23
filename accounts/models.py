@@ -2,7 +2,10 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+# TEMOS QUE REGISTRAR NO SETTINGS, PARA INFORMAR QUE CRIAMOS NOSSO MODELO PERSONALIZADO
+#E mesmo o User estando dentro do arquivo models.py, configuramos assim:
 
+#AUTH_USER_MODEL = 'accounts.Account'
 class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password=None ):
         if not email:

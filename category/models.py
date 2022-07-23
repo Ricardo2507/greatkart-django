@@ -9,7 +9,7 @@ class Category(models.Model):
     
     class Meta:
         verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name_plural = 'categorias'
         
     def get_url(self):
         return reverse('products_by_category', args=[self.slug])

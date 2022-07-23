@@ -5,7 +5,7 @@ from category.models import Category
 def store(request, category_slug=None):
     categories = None
     products = None
-    
+    # print(category_slug)
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.all().filter(category=categories, is_available=True)
