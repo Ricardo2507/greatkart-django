@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # TEMOS QUE REGISTRAR NO SETTINGS, PARA INFORMAR QUE CRIAMOS NOSSO MODELO PERSONALIZADO
 #E mesmo o User estando dentro do arquivo models.py, configuramos assim:
-
+# AbstractBaseUser --> faz menos suposições e  precisamos informar qual campo representa o 
+# nome de usuário, quais campos são obrigatórios e como gerenciar esses usuários.
 #AUTH_USER_MODEL = 'accounts.Account'
 class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password=None ):
@@ -24,7 +25,7 @@ class MyAccountManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
+    # normalize ---> Isso converterá o e-mail em minúsculas, removerá os pontos ( .) e os sinais de adição seguidos por strings arbitrárias 
     def create_superuser(self, first_name, last_name, email, username, password):
         user = self.create_user(
             email = self.normalize_email(email),
@@ -61,7 +62,8 @@ class Account(AbstractBaseUser):
     objects = MyAccountManager()
     
     def __str__(self):
-        return self.email
+       # print(f'{self.email} {self.username}')
+        return {self.email} 
     
     # métodos obrigatórios
     def has_perm(self, perm, obj=None):

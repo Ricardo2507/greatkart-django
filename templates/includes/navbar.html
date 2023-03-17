@@ -19,7 +19,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-                    <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
+                    <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Ligue para nós </a></li>
                 </ul> <!-- list-inline //  -->
             </div> <!-- navbar-collapse .// -->
         </div> <!-- container //  -->
@@ -49,9 +49,9 @@
                 </div> <!-- col.// -->
                 <a href="{% url 'store' %}" class="btn btn-outline-primary">Loja</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="#" class="search">
+                    <form action="{% url 'search' %}" class="search" method='GET'>
                         <div class="input-group w-100">
-                            <input type="text" class="form-control" style="width:60%;" placeholder="Search">
+                            <input type="text" class="form-control" style="width:60%;" placeholder="Pesquisa" name="keyword">
 
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -66,14 +66,14 @@
                         <div class="widget-header">
                             <small class="title text-muted">Bem-vindo!</small>
                             <div>
-                                <a href="./signin.html">Login</a> <span class="dark-transp"> | </span>
-                                <a href="./register.html"> Registro</a>
+                                <a href="#">Login</a> <span class="dark-transp"> | </span>
+                                <a href="#"> Registro</a>
                             </div>
                         </div>
-                        <a href="./cart.html" class="widget-header pl-3 ml-3">
+                        <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i>
                             </div>
-                            <span class="badge badge-pill badge-danger notify">0</span>
+                            <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
                         </a>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
@@ -81,7 +81,11 @@
         </div> <!-- container.// -->
     </section> <!-- header-main .// -->
 
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.dropdown-toggle').dropdown();
+        })
+    </script>
 
 
 </header> <!-- section-header.// -->
